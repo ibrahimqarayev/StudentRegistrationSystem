@@ -5,8 +5,7 @@
  */
 package utils;
 
-import beans.Config;
-import beans.Student;
+import beans.*;
 
 /**
  *
