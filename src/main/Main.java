@@ -5,11 +5,6 @@
  */
 package main;
 
-import beans.Config;
-import beans.Student;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import utils.InputUtil;
 import utils.StudentUtil;
 
