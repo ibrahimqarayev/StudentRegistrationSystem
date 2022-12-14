@@ -5,8 +5,6 @@
  */
 package beans;
 
-import java.util.List;
-
 /**
  *
  * @author ibrahimqarayev
