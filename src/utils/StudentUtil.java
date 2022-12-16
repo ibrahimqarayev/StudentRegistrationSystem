@@ -8,7 +8,6 @@ package utils;
 import beans.*;
 
 /**
- *
  * @author ibrahimqarayev
  */
 public class StudentUtil {
@@ -29,19 +28,13 @@ public class StudentUtil {
         }
         for (int i = 0; i < Config.students.length; i++) {
             Student student = Config.students[i];
-            System.out.println(
-                    "Name: " + student.getName()
-                            + "\nSurname: " + student.getSurname()
-                            + "\nAge: " + student.getAge()
-                            + "\nClass name: " + student.getClassName()
-                            + "\n------------------- ");
+            System.out.println((i + 1) + "." + student.getFullInfo());
         }
     }
 
     public static void registerStudents() {
-        System.out.println("How many students you will registration ?");
 
-        int count = InputUtil.requiredNumber("Enter count");
+        int count = InputUtil.requiredNumber("How many students you will registration ?");
 
         Config.students = new Student[count];
 
@@ -49,11 +42,48 @@ public class StudentUtil {
             System.out.println((i + 1) + ".Register");
             Student student = StudentUtil.fillStudent();
             Config.students[i] = student;
-
         }
-
         System.out.println("\nRegistration completed successfully !\n");
         StudentUtil.printAllRegisteredStudents();
     }
+
+    public static void findStudentsAndPrint() {
+        String text = InputUtil.requiredText("Enter name,surname or class name: ");
+        Student[] foundedStudents = findStudents(text);
+        for (int i = 0; i < foundedStudents.length; i++) {
+            System.out.println(foundedStudents[i].getFullInfo());
+        }
+    }
+
+    public static Student[] findStudents(String text) {
+        int count = 0;
+        for (int i = 0; i < Config.students.length; i++) {
+            Student student = Config.students[i];
+            if (student.getName().contains(text) || student.getSurname().contains(text) || student.getClassName().contains(text)) {
+                count++;
+            }
+        }
+
+        Student[] result = new Student[count];
+        int found = 0;
+        for (int i = 0; i < Config.students.length; i++) {
+            Student student = Config.students[i];
+            if (student.getName().contains(text) || student.getSurname().contains(text) || student.getClassName().contains(text)) {
+                student = result[found];
+                found++;
+            }
+        }
+        return result;
+
+    }
+
+    public static  void updateStudent(){
+        StudentUtil.printAllRegisteredStudents();
+        int i = InputUtil.requiredNumber("Enter the id of the student to be updated: ");
+        System.out.println("Enter new information: ");
+        Student student = StudentUtil.fillStudent();
+        Config.students[i-1] = student;
+    }
+
 
 }
