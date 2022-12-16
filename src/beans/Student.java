@@ -6,7 +6,6 @@
 package beans;
 
 /**
- *
  * @author ibrahimqarayev
  */
 public class Student {
@@ -18,11 +17,11 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name,String surname,int age,String className){
-        this.name=name;
-        this.surname=surname;
-        this.age=age;
-        this.className=className;
+    public Student(String name, String surname, int age, String className) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.className = className;
     }
 
     public String getName() {
@@ -57,10 +56,8 @@ public class Student {
         this.className = className;
     }
 
-    @Override
-    public String toString() {
-        return name + " , " + surname + " , " + age + " , " + className;
+    public String getFullInfo() {
+        return "Student: " + this.getName() + " , " + this.getSurname() + " , " + this.getAge() + " , " + this.getClassName();
     }
-
 
 }
