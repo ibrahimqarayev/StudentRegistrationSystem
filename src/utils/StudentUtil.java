@@ -77,33 +77,55 @@ public class StudentUtil {
 
     }
 
-    public static  void updateStudentWIthNewObject(){
+    public static void updateStudentWIthNewObject() {
         StudentUtil.printAllRegisteredStudents();
         int i = InputUtil.requiredNumber("Enter the id of the student to be updated: ");
         System.out.println("Enter new information: ");
         Student student = StudentUtil.fillStudent();
-        Config.students[i-1] = student;
+        Config.students[i - 1] = student;
     }
 
-    public static  void updateStudentWithSameObject(){
+    public static void updateStudentWithSameObject() {
         StudentUtil.printAllRegisteredStudents();
         int i = InputUtil.requiredNumber("Enter the id of the student to be updated: ");
         System.out.println("Enter new information: ");
-        Student selectedStudent = Config.students[i-1];
-        String changeParams=InputUtil.requiredText(
+        Student selectedStudent = Config.students[i - 1];
+        String changeParams = InputUtil.requiredText(
                 "what do you want to change? Example format : 'name','surname','className'");
 
-        if(changeParams.contains("'name")){
+        if (changeParams.contains("'name")) {
             selectedStudent.setName(InputUtil.requiredText("Name:"));
-        }if(changeParams.contains("'surname")){
+        }
+        if (changeParams.contains("'surname")) {
             selectedStudent.setSurname(InputUtil.requiredText("Surname:"));
         }
-        if(changeParams.contains("'className")){
+        if (changeParams.contains("'className")) {
             selectedStudent.setSurname(InputUtil.requiredText("Class name:"));
         }
-        if(changeParams.contains("'age")){
+        if (changeParams.contains("'age")) {
             selectedStudent.setAge(InputUtil.requiredNumber("Age:"));
         }
     }
 
+    public static void updateStudentWithSplit() {
+        StudentUtil.printAllRegisteredStudents();
+        int index = InputUtil.requiredNumber("Enter the id of the student to be updated: ");
+        System.out.println("Enter new information: ");
+        Student selectedStudent = Config.students[index - 1];
+        String changeParams = InputUtil.requiredText(
+                "what do you want to change? Example format : name,surname,className");
+        String[] parameters = changeParams.split(",");
+        for (int i = 0; i < parameters.length; i++) {
+            String param = parameters[i];
+            if (param.equalsIgnoreCase("name")) {
+                selectedStudent.setName(InputUtil.requiredText("Name:"));
+            } else if (param.equalsIgnoreCase("surname")) {
+                selectedStudent.setName(InputUtil.requiredText("Surname:"));
+            }else if(param.equalsIgnoreCase("age")){
+                selectedStudent.setAge(InputUtil.requiredNumber("Age:"));
+            }else if(param.equalsIgnoreCase("className")){
+                selectedStudent.setClassName("Class name:");
+            }
+        }
+    }
 }
