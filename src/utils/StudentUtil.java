@@ -77,7 +77,7 @@ public class StudentUtil {
 
     }
 
-    public static  void updateStudent(){
+    public static  void updateStudentWIthNewObject(){
         StudentUtil.printAllRegisteredStudents();
         int i = InputUtil.requiredNumber("Enter the id of the student to be updated: ");
         System.out.println("Enter new information: ");
@@ -85,5 +85,25 @@ public class StudentUtil {
         Config.students[i-1] = student;
     }
 
+    public static  void updateStudentWithSameObject(){
+        StudentUtil.printAllRegisteredStudents();
+        int i = InputUtil.requiredNumber("Enter the id of the student to be updated: ");
+        System.out.println("Enter new information: ");
+        Student selectedStudent = Config.students[i-1];
+        String changeParams=InputUtil.requiredText(
+                "what do you want to change? Example format : 'name','surname','className'");
+
+        if(changeParams.contains("'name")){
+            selectedStudent.setName(InputUtil.requiredText("Name:"));
+        }if(changeParams.contains("'surname")){
+            selectedStudent.setSurname(InputUtil.requiredText("Surname:"));
+        }
+        if(changeParams.contains("'className")){
+            selectedStudent.setSurname(InputUtil.requiredText("Class name:"));
+        }
+        if(changeParams.contains("'age")){
+            selectedStudent.setAge(InputUtil.requiredNumber("Age:"));
+        }
+    }
 
 }
